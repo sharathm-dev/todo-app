@@ -10,23 +10,17 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Debug root
-        run: ls -la
-
-      - name: Debug todo-app
-        run: ls -la todo-app
+        uses: actions/checkout@v4   # ✅ upgrade
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20          # 🔥 FIX
 
       - name: Install dependencies
         run: npm install
-        working-directory: todo-app   # 🔥 only here
+        working-directory: todo-app
 
       - name: Build project
         run: npm run build
-        working-directory: todo-app   # 🔥 only here
+        working-directory: todo-app
