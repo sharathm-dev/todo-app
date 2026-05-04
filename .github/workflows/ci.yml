@@ -8,13 +8,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: todo-app   # 🔥 THIS FIXES YOUR ISSUE
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      # 🔍 DEBUG ROOT
+      - name: Show root files
+        run: ls -la
+
+      # 🔍 DEBUG todo-app folder
+      - name: Show todo-app files
+        run: ls -la todo-app
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -22,7 +26,9 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
+        working-directory: todo-app   # 🔥 IMPORTANT
         run: npm install
 
       - name: Build project
+        working-directory: todo-app   # 🔥 IMPORTANT
         run: npm run build
