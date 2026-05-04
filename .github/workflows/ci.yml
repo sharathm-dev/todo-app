@@ -12,12 +12,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 🔍 DEBUG ROOT
-      - name: Show root files
+      - name: Debug root
         run: ls -la
 
-      # 🔍 DEBUG todo-app folder
-      - name: Show todo-app files
+      - name: Debug todo-app
         run: ls -la todo-app
 
       - name: Setup Node
@@ -26,9 +24,9 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        working-directory: todo-app   # 🔥 IMPORTANT
         run: npm install
+        working-directory: todo-app   # 🔥 only here
 
       - name: Build project
-        working-directory: todo-app   # 🔥 IMPORTANT
         run: npm run build
+        working-directory: todo-app   # 🔥 only here
